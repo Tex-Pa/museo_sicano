@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+museo_sicano.db
+static/uploads/schede/*
+!static/uploads/schede/.gitkeep

@@ -1,0 +1,64 @@
+/* Sfondo ispirato alla pietra antica */
+body {
+    background-color: #f4f1ea;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #3e3e3e;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+/* Il contenitore del modulo */
+.form-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border-top: 8px solid #b8860b; /* Un bordo color oro antico */
+    width: 100%;
+    max-width: 500px;
+}
+
+h1 {
+    color: #8b4513; /* Color terracotta */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+/* Stile per le caselle di input */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Importante per le dimensioni */
+}
+
+/* Il pulsante d'invio */
+button {
+    background-color: #8b4513;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #b8860b; /* Cambia in oro quando ci passi sopra */
+}
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ s.titolo }} - Dettaglio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .container-scheda { max-width: 900px; margin: 30px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .header-scheda { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid #8b4513; padding-bottom: 10px; margin-bottom: 20px; }
+        .grid-dati { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .info-box { background: #f9f9f9; padding: 15px; border-radius: 8px; border-left: 4px solid #8b4513; }
+        .foto-grande { width: 100%; max-height: 400px; object-fit: contain; border-radius: 10px; background: #eee; margin-bottom: 20px; }
+        .label { font-weight: bold; color: #8b4513; display: block; font-size: 0.8em; text-transform: uppercase; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #8b4513; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container-scheda">
+        <a href="/archivio" class="back-link">← Torna all'Archivio</a>
+        <a href="/dashboard" class="back-link" style="margin-left: 20px;">🏠 Torna alla Dashboard</a>
+        
+        <div class="header-scheda">
+            <div>
+                <h1>{{ s.titolo }}</h1>
+                <p>Categoria: <strong>{{ s.categoria }}</strong></p>
+            </div>
+            <span style="background: #d4edda; color: #155724; padding: 5px 15px; border-radius: 20px; font-weight: bold;">
+                {{ s.stato_approvazione }}
+            </span>
+        </div>
+
+        {% if s.foto_path %}
+        <img src="{{ url_for('static', filename='uploads/schede/' + s.foto_path) }}" class="foto-grande">
+        {% endif %}
+
+        <h3>Descrizione</h3>
+        <p>{{ s.descrizione }}</p>
+
+        <div class="grid-dati">
+            <div class="info-box">
+                <span class="label">Identificazione</span>
+                <p><strong>Cod. Museo:</strong> {{ s.codice_museo or 'Non catalogato' }}</p>
+                <p><strong>Ente Custode:</strong> {{ s.ente_custode or 'N/D' }}</p>
+                <p><strong>Collocazione:</strong> {{ s.collocazione_attuale or 'N/D' }}</p>
+            </div>
+            <div class="info-box">
+                <span class="label">Dati Tecnici</span>
+                <p><strong>Epoca:</strong> {{ s.epoca_risalenza or 'N/D' }}</p>
+                <p><strong>Materiali:</strong> {{ s.materiale_tecnica or 'N/D' }}</p>
+                <p><strong>Dimensioni:</strong> {{ s.dimensioni or 'N/D' }}</p>
+            </div>
+            <div class="info-box" style="grid-column: span 2;">
+                <span class="label">Note Storiche e Territoriali</span>
+                <p><strong>Luogo Ritrovamento:</strong> {{ s.luogo_ritrovamento }}</p>
+                <p><strong>Coordinate GPS:</strong> {{ s.coordinate_gps or 'Non disponibili' }}</p>
+                <p><em>{{ s.note_storiche }}</em></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

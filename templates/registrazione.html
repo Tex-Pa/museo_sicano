@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Museo Sicano - Registrazione</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <div class="form-container">
+        
+        <h1>Benvenuto nel Museo Sicano</h1>
+        <p>Compila il modulo per unirti a noi!</p>
+
+        <form action="/registra" method="post">
+            
+            <label>Nome:</label><br>
+            <input type="text" name="nome" placeholder="Inserisci il tuo Nome" required><br>
+
+            <label>Cognome:</label><br>
+            <input type="text" name="cognome" placeholder="Inserisci il tuo Cognome" required><br>
+
+            <label>Data di nascita:</label><br>
+            <input type="date" name="nascita" required><br>
+
+            <label>Nazionalità:</label><br>
+            <input type="text" name="nazionalita"><br>
+
+            <label>Regione:</label><br>
+            <input type="text" name="regione"><br>
+
+            <label>Città:</label><br>
+            <input type="text" name="citta"><br>
+
+            <label>Email:</label><br>
+            <input type="email" name="email" placeholder="Esempio: mario@mail.it" required><br>
+
+            <label>Password:</label><br>
+            <input type="password" name="password" required><br>
+
+            <label>Codice Operatore (Opzionale):</label><br>
+            <input type="text" name="codice_op"><br>
+
+            <label class="checkbox-label">
+                <input type="checkbox" name="terminicondizioni" required> 
+                Accetto i Termini e le Condizioni
+            </label><br><br>
+
+            <button type="submit">Invia Registrazione</button>
+        </form>
+    </div>
+
+</body>
+</html>

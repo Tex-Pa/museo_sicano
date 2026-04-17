@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Museo Sicano - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Stili specifici per la Dashboard */
+        .admin-section { border: 2px solid #b8860b; padding: 15px; margin-top: 20px; border-radius: 10px; background: #fffdf5; }
+        .operator-section { border: 2px solid #8b4513; padding: 15px; margin-top: 20px; border-radius: 10px; }
+        .info-section { border: 1px solid #ccc; padding: 15px; margin-top: 20px; border-radius: 10px; background: #fdfdfd; }
+        
+        .badge { background: #b8860b; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; text-transform: uppercase; }
+        
+        /* Bottoni stilizzati come link */
+        .btn-link {
+            display: inline-block;
+            padding: 10px 20px;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: opacity 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-link:hover { opacity: 0.8; }
+        .btn-operator { background-color: #8b4513; }
+        .btn-admin { background-color: #b8860b; }
+        .btn-explore { background-color: #555; }
+
+        .recent-list { margin-top: 15px; font-size: 0.9em; }
+        .recent-item { border-bottom: 1px solid #eee; padding: 5px 0; display: flex; justify-content: space-between; }
+    </style>
+</head>
+<body>
+    <div class="form-container" style="max-width: 800px; margin: 0 auto; padding: 20px;">
+        <h1>Area Personale</h1>
+        <p>Benvenuto, <strong>{{ utente.nome }} {{ utente.cognome }}</strong> <span class="badge">{{ utente.ruolo }}</span></p>
+
+        <hr>
+
+        <div class="info-section">
+            <h3>📜 Archivio del Territorio</h3>
+            <p>Consulta le schede tecniche, i reperti e le iniziative approvate dal Museo.</p>
+            <a href="/archivio" class="btn-link btn-explore">Esplora l'Archivio</a>
+            
+            {% if schede %}
+            <div class="recent-list">
+                <strong>Ultime attività:</strong>
+                {% for s in schede[:3] %} <div class="recent-item">
+                    <span>{{ s.titolo }}</span>
+                    <small><em>{{ s.stato_approvazione }}</em></small>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        {% if permessi.crea_schede %}
+        <div class="operator-section">
+            <h3>✍️ Gestione Contenuti (Operatore)</h3>
+            <p>Utilizza questo modulo professionale per inserire nuovi reperti o documentare iniziative.</p>
+            <a href="/nuova_scheda" class="btn-link btn-operator">+ Crea Nuova Scheda Tecnica</a>
+        </div>
+        {% endif %}
+
+        {% if permessi.approva_schede %}
+        <div class="admin-section">
+            <h3>👑 Pannello di Controllo (Amministratore)</h3>
+            <p>Supervisione dei contenuti e gestione dei collaboratori.</p>
+            <ul>
+                <li><strong>Revisione:</strong> Accedi all'archivio per approvare le nuove bozze.</li>
+                <li><strong>Accessi:</strong> Gestisci i codici di registrazione.</li>
+            </ul>
+            <a href="/archivio" class="btn-link btn-admin">Vai alla Revisione Schede</a>
+            <a href="/gestione_codici" class="btn-link btn-admin" style="margin-left: 10px;">Gestisci Codici</a>
+        </div>
+        {% endif %}
+
+        <br><br>
+        <hr>
+        <div style="text-align: center;">
+            <a href="/logout" style="color: #8b4513; text-decoration: none; font-weight: bold;">← Esci (Logout)</a>
+        </div>
+    </div>
+</body>
+</html>

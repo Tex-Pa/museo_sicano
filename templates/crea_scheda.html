@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuova Scheda Tecnica - Museo Sicano</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .form-section { background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 25px; border-left: 5px solid #8b4513; }
+        .required-label { color: #d9534f; font-weight: bold; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        legend { font-weight: bold; color: #8b4513; text-transform: uppercase; font-size: 0.9em; }
+        .form-container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Catalogazione Professionale Bene/Iniziativa</h1>
+        <p>Inserisci i dati per la protezione e valorizzazione del patrimonio territoriale.</p>
+        
+        <form action="/salva-scheda" method="post" enctype="multipart/form-data">
+            
+            <fieldset class="form-section">
+                <legend>Dati Identificativi (Indispensabili)</legend>
+                <label>Titolo/Nome del Bene <span class="required-label">*</span>:</label>
+                <input type="text" name="titolo" placeholder="es. Cratiere a figure rosse" required style="width: 100%; margin-bottom: 10px;">
+                
+                <div class="grid-container">
+                    <div>
+                        <label>Categoria <span class="required-label">*</span>:</label>
+                        <select name="categoria" required style="width: 100%;">
+                            <option value="Archeologia">Archeologia</option>
+                            <option value="Etnoantropologia">Etnoantropologia</option>
+                            <option value="Naturalistico">Naturalistico</option>
+                            <option value="Sociale">Iniziativa Sociale</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Luogo di Ritrovamento <span class="required-label">*</span>:</label>
+                        <input type="text" name="luogo_ritrovamento" placeholder="Località o Sito" required style="width: 100%;">
+                    </div>
+                </div>
+
+                <label style="display: block; margin-top: 10px;">Descrizione Analitica <span class="required-label">*</span>:</label>
+                <textarea name="descrizione" rows="4" required placeholder="Descrizione dettagliata delle caratteristiche..." style="width: 100%;"></textarea>
+            </fieldset>
+
+            <fieldset class="form-section" style="border-left-color: #b8860b;">
+                <legend>Amministrazione e Inventario</legend>
+                <div class="grid-container">
+                    <div>
+                        <label>Codice Inventario Museo:</label>
+                        <input type="text" name="codice_museo" placeholder="es. MS-2024-001" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label>Codice Soprintendenza:</label>
+                        <input type="text" name="codice_soprintendenza" placeholder="es. SBCA-AG-1234" style="width: 100%;">
+                    </div>
+                </div>
+                <label style="display: block; margin-top: 10px;">Codice ICCD (Nazionale):</label>
+                <input type="text" name="codice_iccd" style="width: 100%;">
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Collocazione e Caratteristiche Tecniche</legend>
+                <div class="grid-container">
+                    <div>
+                        <label>Ente Custode attuale:</label>
+                        <input type="text" name="ente_custode" placeholder="es. Comune di..." style="width: 100%;">
+                    </div>
+                    <div>
+                        <label>Collocazione fisica:</label>
+                        <input type="text" name="collocazione_attuale" placeholder="es. Magazzino, Settore B" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label>Materiale e Tecnica:</label>
+                        <input type="text" name="materiale_tecnica" placeholder="es. Calcare scolpito" style="width: 100%;">
+                    </div>
+                    <div>
+                        <label>Dimensioni (cm/kg):</label>
+                        <input type="text" name="dimensioni" style="width: 100%;">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-section">
+                <legend>Documentazione Multimediale e GPS</legend>
+                <label>Carica Immagine/Foto:</label>
+                <input type="file" name="foto" accept="image/*" style="margin-bottom: 10px;">
+                
+                <label style="display: block;">Coordinate GPS (Lat, Long):</label>
+                <input type="text" name="coordinate_gps" placeholder="es. 37.1234, 13.5678" style="width: 100%; margin-bottom: 10px;">
+                
+                <label style="display: block;">Note Storiche / Bibliografia:</label>
+                <textarea name="note_storiche" rows="2" style="width: 100%;"></textarea>
+            </fieldset>
+
+            <button type="submit" style="background: #8b4513; color: white; border: none; width: 100%; padding: 15px; font-size: 1.1em; cursor: pointer; border-radius: 5px;">
+                Registra nel Database Scientifico
+            </button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 20px;"><a href="/login">Torna alla Dashboard</a></p>
+    </div>
+</body>
+</html>

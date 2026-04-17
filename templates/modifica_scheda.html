@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifica Scheda</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body style="padding: 50px; font-family: sans-serif;">
+    <div style="max-width: 600px; margin: 0 auto; background: #fffdf5; padding: 30px; border-radius: 10px; border: 1px solid #ddd;">
+        <h2>✏️ Modifica Scheda: {{ s.titolo }}</h2>
+        <form method="POST">
+            <label>Titolo:</label><br>
+            <input type="text" name="titolo" value="{{ s.titolo }}" style="width: 100%; margin-bottom: 15px;"><br>
+            
+            <label>Categoria:</label><br>
+            <input type="text" name="categoria" value="{{ s.categoria }}" style="width: 100%; margin-bottom: 15px;"><br>
+            
+            <label>Luogo:</label><br>
+            <input type="text" name="luogo_ritrovamento" value="{{ s.luogo_ritrovamento }}" style="width: 100%; margin-bottom: 15px;"><br>
+            
+            <label>Descrizione:</label><br>
+            <textarea name="descrizione" rows="5" style="width: 100%; margin-bottom: 15px;">{{ s.descrizione }}</textarea><br>
+            
+            <button type="submit" style="padding: 10px 20px; background: #b8860b; color: white; border: none; border-radius: 5px; cursor: pointer;">Salva Modifiche</button>
+            <a href="/archivio" style="margin-left: 10px; color: #666;">Annulla</a>
+        </form>
+    </div>
+</body>
+</html>
